@@ -1,1 +1,0 @@
-# Automating-Cadastral-Map-Object-Analysis-and-Shrinkage-Correction
