@@ -1,0 +1,67 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# 지적원도 이미지 전처리 데모\n",
+    "\n",
+    "이 노트북은 지적원도 이미지의 전처리 단계를 단계별로 시연합니다. 여기에는 그레이스케일 변환, 노이즈 감소, 이미지 선명화와 같은 기술이 포함됩니다."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## 1. 필요한 라이브러리 임포트"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "source": [
+    "import sys\n",
+    "import os\n",
+    "import numpy as np\n",
+    "import cv2\n",
+    "import matplotlib.pyplot as plt\n",
+    "from pathlib import Path\n",
+    "\n",
+    "# 프로젝트 루트 디렉토리를 파이썬 경로에 추가\n",
+    "project_root = os.path.abspath(os.path.join(os.getcwd(), '..'))\n",
+    "if project_root not in sys.path:\n",
+    "    sys.path.append(project_root)\n",
+    "\n",
+    "# 전처리 모듈 임포트\n",
+    "from src.preprocessing import image_preprocessing"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## 2. 이미지 로드 및 기본 정보 확인"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "source": [
+    "# 테스트 이미지 경로\n",
+    "image_path = \"../data/sample/raw_cadastral_maps/test_map.tif\"\n",
+    "\n",
+    "# 이미지 로드\n",
+    "image = cv2.imread(image_path)\n",
+    "\n",
+    "# 원본 이미지 정보\n",
+    "print(f\"이미지 크기: {image.shape}\")\n",
+    "print(f\"이미지 타입: {image.dtype}\")\n",
+    "\n",
+    "# 원본 이미지 표시\n",
+    "plt.figure(figsize=(10, 8))\n",
+    "plt.title(\"원본 지적원도 이미지\")\n",
+    "plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))\n",
+    "plt.axis('off')\n",
+    "plt.show()"\n",
